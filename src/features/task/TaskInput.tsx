@@ -9,19 +9,18 @@ import { addTask, editTask, selectEditedTask, updateTask } from "./taskSlice";
 const TaskInput: VFC = () => {
   const dispatch = useAppDispatch();
   const editedTask = useAppSelector(selectEditedTask);
+  const isDisabled = editedTask.title.length === 0;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(editTask({ ...editedTask, title: e.target.value }));
   };
 
   const handleOnKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key == "Enter" && !isDisabled) {
+    if (e.key === "Enter" && !isDisabled) {
       e.preventDefault();
-      editedTask.id === 0 ? dispatch(addClicked) : dispatch(updateClicked);
+      editedTask.id === 0 ? addClicked() : updateClicked();
     }
   };
-
-  const isDisabled = editedTask.title.length === 0;
 
   const addClicked = () => {
     dispatch(addTask(editedTask.title));
