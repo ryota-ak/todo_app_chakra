@@ -3,8 +3,7 @@ import { Checkbox } from "@chakra-ui/checkbox";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Box, Flex, Spacer } from "@chakra-ui/layout";
 import { VFC } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch } from "../../app/hooks";
 import { deleteTask, editTask, updateTask } from "./taskSlice";
 import { Task } from "./types";
 
@@ -13,7 +12,7 @@ type Props = {
 };
 
 const TaskItem: VFC<Props> = ({ task }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   return (
     <Box p={2} borderBottom="1px" borderColor="gray.200" h={12}>
       <Flex>

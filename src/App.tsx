@@ -1,4 +1,4 @@
-import { Box, Flex, Heading } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import { VFC } from "react";
 import Header from "./component/Header";
 import TaskInput from "./features/task/TaskInput";

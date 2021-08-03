@@ -1,10 +1,10 @@
 import { Heading } from "@chakra-ui/layout";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../app/hooks";
 import { editTask } from "../features/task/taskSlice";
 import { initialState } from "../features/task/taskSlice";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <Heading

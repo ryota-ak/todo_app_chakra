@@ -3,13 +3,12 @@ import { AddIcon } from "@chakra-ui/icons";
 import { Input } from "@chakra-ui/input";
 import { Box, Flex } from "@chakra-ui/layout";
 import React, { VFC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../app/store";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addTask, editTask, selectEditedTask, updateTask } from "./taskSlice";
 
 const TaskInput: VFC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const editedTask = useSelector(selectEditedTask);
+  const dispatch = useAppDispatch();
+  const editedTask = useAppSelector(selectEditedTask);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(editTask({ ...editedTask, title: e.target.value }));
