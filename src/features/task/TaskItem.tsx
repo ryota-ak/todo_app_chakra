@@ -2,7 +2,7 @@ import { IconButton } from "@chakra-ui/button";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { Box, Flex, Spacer } from "@chakra-ui/layout";
-import { VFC } from "react";
+import { memo, VFC } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { deleteTask, editTask, updateTask } from "./taskSlice";
 import { Task } from "./types";
@@ -11,8 +11,9 @@ type Props = {
   task: Task;
 };
 
-const TaskItem: VFC<Props> = ({ task }) => {
+const TaskItem: VFC<Props> = memo(({ task }) => {
   const dispatch = useAppDispatch();
+
   return (
     <Box p={2} borderBottom="1px" borderColor="gray.200" h={12}>
       <Flex>
@@ -25,7 +26,9 @@ const TaskItem: VFC<Props> = ({ task }) => {
             dispatch(updateTask({ ...task, completed: !task.completed }));
           }}
         />
-        <Box pt={1}>{task.title}</Box>
+        <Box pt={1} textDecoration={task.completed ? "line-through" : "none"}>
+          {task.title}
+        </Box>
         <Spacer />
         <IconButton
           aria-label="Search database"
@@ -47,6 +50,6 @@ const TaskItem: VFC<Props> = ({ task }) => {
       </Flex>
     </Box>
   );
-};
+});
 
 export default TaskItem;
