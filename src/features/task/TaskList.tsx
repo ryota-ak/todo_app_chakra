@@ -6,7 +6,7 @@ import { selectTasks } from "./taskSlice";
 
 const TaskList: VFC = () => {
   const tasks = useAppSelector(selectTasks);
-  
+
   return (
     <Box bg="white" mt={5} maxH={500} overflowY="scroll">
       {tasks.length > 0 &&
